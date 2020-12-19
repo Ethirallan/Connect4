@@ -1,5 +1,3 @@
-import 'dart:math';
-
 int checkGameOver(List<List<int>> board, int n, int m) {
   int horizontal = checkHorizontal(board, n, m);
   int vertical = checkVertical(board, n, m);
@@ -19,11 +17,11 @@ int checkGameOver(List<List<int>> board, int n, int m) {
 }
 
 int checkHorizontal(List<List<int>> board, int n, int m) {
-  for (int i = 0; i < n - 1; i++) {
-    for (int j = 0; j < m - 2; j++) {
-      int color = board[j][i];
+  for (int i = 0; i < n - 3; i++) {
+    for (int j = 0; j < m; j++) {
+      int color = board[i][j];
       if (color == 0) continue;
-      if (board[j][i] == color && board[j + 1][i] == color && board[j + 2][i] == color && board[j + 3][i] == color) {
+      if (board[i][j] == color && board[i + 1][j] == color && board[i + 2][j] == color && board[i + 3][j] == color) {
         return color;
       }
     }
@@ -80,7 +78,7 @@ List<int> getOpenCols(List<List<int>> board, int m) {
   return openCols;
 }
 
-findOpenRow(List<List<int>> board, int col) {
+int findOpenRow(List<List<int>> board, int col) {
   for (int i = 0; i < board[col].length; i++) {
     if (board[col][i] == 0) {
       return i;

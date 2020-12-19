@@ -1,11 +1,9 @@
-import 'package:connect4/helpers/helper.dart';
-
-final int centerRow = 10;
-final int lineOfTwo = 3;
-final int lineOfThree = 10;
-final int win = 10000;
-final int lose = -10000;
-final int opponentLineOfTwo = 6;
+final int centerRow = 15;
+final int lineOfTwo = 10;
+final int lineOfThree = 20;
+final int win = 100000;
+final int lose = 10000000;
+final int opponentLineOfTwo = 10;
 final int opponentLineOfThree = 15;
 
 getBoardScore(List<List<int>> board, int n, int m, int color) {
@@ -19,16 +17,21 @@ getBoardScore(List<List<int>> board, int n, int m, int color) {
 
   if (checkWinState(board, n, m, color)) {
     score += win;
-  } else if (checkLostState(board, n, m, color == 1 ? 2 : 1)) {
-    score += lose;
+  }
+  if (checkLostState(board, n, m, color == 1 ? 2 : 1)) {
+    score -= lose;
   }
 
   return score;
 }
 
 bool checkWinState(List<List<int>> board, int n, int m, int color) {
-  int gameOverState = checkGameOver(board, n, m);
-  return gameOverState == color;
+  int counter = 0;
+  counter += countInHorizontalRow(board, n, m, color, 4, true);
+  counter += countInVerticalRow(board, n, m, color, 4, true);
+  counter += countInSlashRow(board, n, m, color, 4, true);
+  counter += countInBackSlashRow(board, n, m, color, 4, true);
+  return counter > 0;
 }
 
 int checkLineOfTwo(List<List<int>> board, int m, int color, int col) {
@@ -89,8 +92,7 @@ bool checkLostState(List<List<int>> board, int n, int m, int color) {
 int countInHorizontalRow(List<List<int>> board, int n, int m, int color, int size, bool checkIfValid) {
   int counterGlobal = 0;
   for (int i = 0; i < n - 3; i++) {
-    for (int j = 0; j < m - 2; j++) {
-      // if (board[i][j] != color) continue;
+    for (int j = 0; j < m; j++) {
       int counter = 0;
 
       for (int k = 0; k < 4; k++) {
@@ -121,9 +123,8 @@ int countInHorizontalRow(List<List<int>> board, int n, int m, int color, int siz
 
 int countInVerticalRow(List<List<int>> board, int n, int m, int color, int size, bool checkIfValid) {
   int counterGlobal = 0;
-  for (int i = 0; i < n - 3; i++) {
+  for (int i = 0; i < n; i++) {
     for (int j = 0; j < m - 3; j++) {
-      // if (board[i][j] != color) continue;
       int counter = 0;
 
       for (int k = 0; k < 4; k++) {
@@ -155,7 +156,6 @@ int countInSlashRow(List<List<int>> board, int n, int m, int color, int size, bo
   int counterGlobal = 0;
   for (int i = 0; i < n - 3; i++) {
     for (int j = 0; j < m - 3; j++) {
-      // if (board[i][j] != color) continue;
       int counter = 0;
 
       for (int k = 0; k < 4; k++) {
@@ -171,7 +171,7 @@ int countInSlashRow(List<List<int>> board, int n, int m, int color, int size, bo
         for (int k = 0; k < 4; k++) {
           int field = board[i + k][j + k];
           if (field == 0) {
-            if (j == 0 || board[i + k][j] != 0) {
+            if (j + k == 0 || board[i + k][j + k - 1] != 0) {
               counter++;
             }
           }
@@ -186,9 +186,8 @@ int countInSlashRow(List<List<int>> board, int n, int m, int color, int size, bo
 
 int countInBackSlashRow(List<List<int>> board, int n, int m, int color, int size, bool checkIfValid) {
   int counterGlobal = 0;
-  for (int i = 3; i < n - 3; i++) {
+  for (int i = 3; i < n; i++) {
     for (int j = 0; j < m - 3; j++) {
-      // if (board[i][j] != color) continue;
       int counter = 0;
 
       for (int k = 0; k < 4; k++) {
@@ -204,7 +203,7 @@ int countInBackSlashRow(List<List<int>> board, int n, int m, int color, int size
         for (int k = 0; k < 4; k++) {
           int field = board[i - k][j + k];
           if (field == 0) {
-            if (j == 0 || board[i - k][j] != 0) {
+            if (j + k == 0 || board[i - k][j + k - 1] != 0) {
               counter++;
             }
           }

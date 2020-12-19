@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:connect4/helpers/helper.dart';
 import 'package:connect4/helpers/scoring.dart';
 import 'package:connect4/models/move.dart';
