@@ -19,8 +19,10 @@ class GridCell extends StatelessWidget {
       duration: Duration(milliseconds: 300),
       curve: Curves.easeIn,
       margin: EdgeInsets.all(4),
-      height: 40,
-      width: 40,
+      height: MediaQuery.of(context).size.width > 1000 ? 70 : 50,
+      width: MediaQuery.of(context).size.width > 1000 ? 70 : 50,
+      // height: MediaQuery.of(context).size.width / 10,
+      // width: MediaQuery.of(context).size.width / 10,
       decoration: BoxDecoration(
         border: Border.all(
           width: 5,

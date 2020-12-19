@@ -15,10 +15,8 @@ class Game extends HookWidget {
     final boardState = useProvider(boardProvider);
     final boardStateNotifier = useProvider(boardParamsStateProvider);
     return Scaffold(
-      key: boardState.gameKey,
       appBar: AppBar(
         title: Text(title),
-        backgroundColor: Colors.blueGrey,
         actions: [
           IconButton(icon: Icon(Icons.refresh),
             onPressed: () {
@@ -28,7 +26,6 @@ class Game extends HookWidget {
           ),
         ],
       ),
-      backgroundColor: Colors.blueGrey,
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.all(4),
@@ -52,33 +49,36 @@ class Game extends HookWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      elevation: 4,
-                      child: Center(
-                        child: Container(
-                          padding: EdgeInsets.all(6),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              for (int i = 0; i < boardState.board.length; i++)
-                                GestureDetector(
-                                  onTap: () {
-                                    if ((boardState.currentPlayer == 1 && boardState.greenPlayer == Player.human) || (boardState.currentPlayer == 2 && boardState.bluePlayer == Player.human))
-                                      boardState.addDisk(i);
-                                  },
-                                  child: Column(
-                                    children: [
-                                      for (int j = boardState.board[i].length - 1; j >= 0; j--)
-                                        GridCell(
-                                          playerColor: boardState.board[i][j],
-                                        )
-                                    ],
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width > 1000 ? 700 : 450,
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        elevation: 4,
+                        child: Center(
+                          child: Container(
+                            padding: EdgeInsets.all(10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                for (int i = 0; i < boardState.board.length; i++)
+                                  GestureDetector(
+                                    onTap: () {
+                                      if ((boardState.currentPlayer == 1 && boardState.greenPlayer == Player.human) || (boardState.currentPlayer == 2 && boardState.bluePlayer == Player.human))
+                                        boardState.addDisk(i);
+                                    },
+                                    child: Column(
+                                      children: [
+                                        for (int j = boardState.board[i].length - 1; j >= 0; j--)
+                                          GridCell(
+                                            playerColor: boardState.board[i][j],
+                                          )
+                                      ],
+                                    ),
                                   ),
-                                ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

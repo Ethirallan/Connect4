@@ -8,7 +8,6 @@ import 'package:connect4/widgets/game_over_dialog.dart';
 import 'package:flutter/material.dart';
 
 class BoardChangeNotifier extends ChangeNotifier {
-  final GlobalKey gameKey = new GlobalKey();
   List<List<int>> _board;
 
   // Settings
@@ -194,8 +193,6 @@ class BoardChangeNotifier extends ChangeNotifier {
         Future.delayed(Duration(milliseconds: 1000), () {
           _nextTest();
         });
-      } else {
-        gameOverDialog(gameKey.currentContext, winText, newGame);
       }
     });
   }
