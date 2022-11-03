@@ -19,7 +19,7 @@ void gameOverDialog(BuildContext context, String winText, VoidCallback newGame) 
         ),
       ),
       actions: [
-        FlatButton(
+        TextButton(
           onPressed: () => Navigator.pop(context),
           child: Text(
             'Show board',
@@ -28,7 +28,7 @@ void gameOverDialog(BuildContext context, String winText, VoidCallback newGame) 
             ),
           ),
         ),
-        FlatButton(
+        TextButton(
           onPressed: () {
             Navigator.pop(context);
             newGame();

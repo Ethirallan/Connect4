@@ -31,11 +31,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: createMaterialColor(Colors.greenAccent[700]),
         primaryColor: Colors.greenAccent[700],
-        accentColor: Colors.greenAccent[700],
         fontFamily: 'Neue Haas Grotesk Display Pro',
         buttonTheme: ButtonThemeData(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
@@ -44,9 +42,12 @@ class App extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
         appBarTheme: AppBarTheme(
-          textTheme: TextTheme(
+          toolbarTextStyle: TextTheme(
             headline6: TextStyle(fontSize: 26.0, color: Colors.grey[900]),
-          ),
+          ).bodyText2, titleTextStyle: TextTheme(
+            headline6: TextStyle(fontSize: 26.0, color: Colors.grey[900]),
+          ).headline6,
+          backgroundColor: Colors.greenAccent[700],
         ),
         textTheme: TextTheme(
           headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
@@ -54,6 +55,7 @@ class App extends StatelessWidget {
           bodyText2: TextStyle(fontSize: 20.0, fontFamily: 'Neue Haas Grotesk Display Pro'),
           button: TextStyle(fontSize: 26, fontFamily: 'Neue Haas Grotesk Display Pro', color: Colors.grey[900]),
         ),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: createMaterialColor(Colors.greenAccent[700])).copyWith(secondary: Colors.greenAccent[700]).copyWith(brightness: Brightness.dark),
       ),
       builder: (context, child) => Container(
         color: Colors.grey[900],

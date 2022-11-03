@@ -4,7 +4,6 @@ import 'package:connect4/algorithms/minimax.dart';
 import 'package:connect4/helpers/helper.dart';
 import 'package:connect4/models/move.dart';
 import 'package:connect4/models/player.dart';
-import 'package:connect4/widgets/game_over_dialog.dart';
 import 'package:flutter/material.dart';
 
 class BoardChangeNotifier extends ChangeNotifier {

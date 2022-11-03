@@ -8,7 +8,7 @@ class MenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 50,),
-      child: RaisedButton(
+      child: ElevatedButton(
         child: Text(label),
         onPressed: fun,
       ),
