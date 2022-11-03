@@ -4,6 +4,15 @@ A classic game, written in Flutter. The main goal of this project was implementa
 
 Web app is hosted [here](http://connect4.ethirallan.com/).
 
+
+## Demo
+
+[![end](https://user-images.githubusercontent.com/39746196/199766522-05d8492e-08a1-44d5-be8b-5d44fa41b351.png)](https://nextcloud.ethirallan.com/index.php/s/cHGmYYpeysKirG2)
+
+
+https://user-images.githubusercontent.com/39746196/199765983-4bd599b5-4e1b-4c71-b08f-854437933dc3.mp4
+
+
 ## Features
 
 Multiple game modes:
